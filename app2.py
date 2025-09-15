@@ -34,12 +34,10 @@ MCP_SERVERS = {
 async def setup_agent():
     client = MultiServerMCPClient(MCP_SERVERS)
 
-    # Option 1 (simpler, all tools from all servers)
+   
     tools = await client.get_tools()
 
-    # Option 2 (if you only want tools from a specific server)
-    # async with client.session("mcp-amadeus") as session:
-    #     tools = await load_mcp_tools(session)
+    
 
     llm = ChatOllama(model="mistral", temperature=0)
     agent = create_react_agent(llm, tools)
